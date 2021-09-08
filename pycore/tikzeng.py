@@ -57,6 +57,23 @@ def to_Conv( name, s_filer=256, n_filer=64, offset="(0,0,0)", to="(0,0,0)", widt
     };
 """
 
+# concate
+def to_Concate( name, s_filer=256, n_filer=64, offset="(0,0,0)", to="(0,0,0)", width=1, height=40, depth=40,opacity=0.2, caption=" " ):
+    return r"""
+\pic[shift={"""+ offset +"""}] at """+ to +""" 
+    {Box={
+        name=""" + name +""",
+        caption="""+ caption +r""",
+        xlabel={{"""+ str(n_filer) +""", }},
+        zlabel="""+ str(s_filer) +""",
+        fill={rgb:white,1;black,3},
+        height="""+ str(height) +""",
+        width="""+ str(width) +""",
+        depth="""+ str(depth) +"""
+        }
+    };
+"""
+
 # Conv,Conv,relu
 # Bottleneck
 def to_ConvConvRelu( name, s_filer=256, n_filer=(64,64), offset="(0,0,0)", to="(0,0,0)", width=(2,2), height=40, depth=40, caption=" " ):
@@ -209,3 +226,20 @@ def to_generate( arch, pathname="file.tex" ):
      
 
 
+# motion field
+def to_SoftMax2( name, s_filer=10, offset="(0,0,0)", to="(0,0,0)", width=1.5, height=3, depth=25, opacity=0.8, caption=" " ):
+    return r"""
+\pic[shift={"""+ offset +"""}] at """+ to +""" 
+    {Box={
+        name=""" + name +""",
+        caption="""+ caption +""",
+        xlabel={{" ","dummy"}},
+        zlabel="""+ str(s_filer) +""",
+        fill={rgb:green,1;black,0.3},
+        opacity="""+ str(opacity) +""",
+        height="""+ str(height) +""",
+        width="""+ str(width) +""",
+        depth="""+ str(depth) +"""
+        }
+    };
+"""
